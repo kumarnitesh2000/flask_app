@@ -1,0 +1,42 @@
+
+{%extends 'base.html'%}
+
+{%block head%}
+    <br>
+    <br>
+
+    Todo App :
+    <h1>Task Manager</h1>
+{%if tasks|length > 0%}
+<table style="border:1px solid red">
+
+
+    <tr>
+        <th>Task</th>
+        <th>Added</th>
+        <th>Action</th>
+    </tr>
+   {%for task in tasks%}
+
+     <tr>
+        <td>{{task.content}}</td>
+        <td>{{task.date_created.date()}}</td>
+        <td>
+            <a href="delete/{{task.id}}">Delete</a>
+            <br>
+            <a href="update/{{task.id}}">Update</a>
+        </td>
+    </tr>
+    {%endfor%}
+</table>
+{%else%}
+<h1>
+
+    No tasks are mentioned add now.
+</h1>
+{%endif%}
+<form action="/" method="post">
+    <input type="text" name="content" id="content">
+    <input type="submit" value="submit">
+</form>
+    {%endblock%}
